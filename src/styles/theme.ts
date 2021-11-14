@@ -1,4 +1,8 @@
+import { palette } from '@/styles/palette';
+
 export const darkTheme = {
+  ...palette,
+
   font: {
     light: '#8b949e',
     medium: '#c3c7d2',

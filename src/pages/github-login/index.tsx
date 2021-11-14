@@ -1,6 +1,9 @@
 import { GetServerSidePropsContext, NextPage } from 'next';
 import authRepository from '@/repository/auth/auth.repository';
 import { githubInstance } from '@/lib/axios';
+import { wrapper } from '@/stores/nextStore';
+import { fetchMyInfoThunk } from '@/stores/user/user.thunk';
+import isEmpty from '@/util/isEmpty';
 
 const GithubLoginPage: NextPage = () => {
   return (
@@ -8,32 +11,49 @@ const GithubLoginPage: NextPage = () => {
   );
 }
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  try {
+export const getServerSideProps = wrapper.getServerSideProps((store) => {
+  return async (ctx: GetServerSidePropsContext) => {
     const { code } = ctx.query;
-    const { access_token } = await authRepository.fetchAccessToken(String(code));
 
-    ctx.res.setHeader('set-Cookie', `access_token=${access_token};`);
-    githubInstance.defaults.headers.common['Authorization'] = `token ${access_token}`;
+    if (isEmpty(code)) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/',
+        },
+        props: {},
+      };
+    }
 
-    const { login } = await authRepository.fetchMyInfo();
+    try {
+      const { access_token } = await authRepository.fetchAccessToken(String(code));
+  
+      ctx.res.setHeader('set-Cookie', `access_token=${access_token};`);
+      githubInstance.defaults.headers.common['Authorization'] = `token ${access_token}`;
+  
+      const { dispatch, getState } = store;
 
-    return {
-      redirect: {
-        permanent: false,
-        destination: `/user/${login}`,
-      },
-      props: {},
-    };
-  } catch (error) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/',
-      },
-      props: {},
-    };
-  }
-}
+      await dispatch(fetchMyInfoThunk());
+
+      const { myInfo } = getState().user;
+  
+      return {
+        redirect: {
+          permanent: false,
+          destination: `/user/${myInfo!.login}`,
+        },
+        props: {},
+      };
+    } catch (error) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/',
+        },
+        props: {},
+      };
+    }
+  };
+});
 
 export default GithubLoginPage;

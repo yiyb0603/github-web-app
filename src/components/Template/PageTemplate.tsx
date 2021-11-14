@@ -22,7 +22,7 @@ const ChildrenWrapper = styled.div`
   min-height: 100vh;
   max-width: 550px;
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.color.background.medium};
+  background-color: ${({ theme }) => theme.color.background.bold};
   border: ${({ theme }) => `1px solid ${theme.color.background.light}`};
 `;
 

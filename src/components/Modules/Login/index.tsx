@@ -16,10 +16,10 @@ const Login = (): JSX.Element => {
 
         <Button
           width='auto'
-          height='45px'
+          height='50px'
           borderRadius='5px'
           padding='0 2rem'
-          backgroundColor={color.background.bold}
+          backgroundColor={color.background.medium}
           onClick={() => window.open(GITHUB_OAUTH_URL, '_self')}
         >
           <Flex

@@ -5,6 +5,7 @@ type FlexStyleProps = {
   width?: string;
   height?: string;
   gap?: string;
+  flexDirection?: 'row' | 'column';
   justifyContent?: 'flex-start' | 'center' | 'flex-end';
   alignItems?: 'flex-start' | 'center' | 'flex-end' | 'baseline';
   margin?: string;
@@ -18,6 +19,7 @@ const Flex = ({
   width,
   height,
   gap,
+  flexDirection = 'row',
   justifyContent,
   alignItems = 'center',
   margin,
@@ -28,6 +30,7 @@ const Flex = ({
       width={width}
       height={height}
       gap={gap}
+      flexDirection={flexDirection}
       justifyContent={justifyContent}
       alignItems={alignItems}
       margin={margin}
@@ -41,6 +44,7 @@ const FlexContainer = styled.div<FlexStyleProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   display: flex;
+  flex-direction: ${({ flexDirection }) => flexDirection};
   align-items: ${({ alignItems }) => alignItems};
   justify-content: ${({ justifyContent }) => justifyContent};
   gap: ${({ gap }) => gap};

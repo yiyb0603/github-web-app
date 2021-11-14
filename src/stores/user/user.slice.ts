@@ -1,6 +1,12 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { UserState, initialUserState } from '@/stores/user/user.initial';
-import { fetchMyInfoThunk, fetchUserInfoThunk } from '@/stores/user/user.thunk';
+import {
+  fetchMyInfoThunk,
+  fetchUserInfoThunk,
+  fetchUserOrganizationsThunk,
+  fetchUserRepositoriesThunk,
+  fetchUserStarredThunk,
+} from '@/stores/user/user.thunk';
 
 const userSlice = createSlice({
   name: 'user',
@@ -12,7 +18,19 @@ const userSlice = createSlice({
     });
 
     builder.addCase(fetchUserInfoThunk.fulfilled, (state, action) => {
-      state.userInfo = action.payload;
+      state.userInfo.user = action.payload;
+    });
+
+    builder.addCase(fetchUserOrganizationsThunk.fulfilled, (state, action) => {
+      state.userInfo.organizations = action.payload;
+    });
+
+    builder.addCase(fetchUserRepositoriesThunk.fulfilled, (state, action) => {
+      state.userInfo.repositories = action.payload;
+    });
+
+    builder.addCase(fetchUserStarredThunk.fulfilled, (state, action) => {
+      state.userInfo.starred = action.payload;
     });
   },
 });

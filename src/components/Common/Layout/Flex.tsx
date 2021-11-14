@@ -6,7 +6,7 @@ type FlexStyleProps = {
   height?: string;
   gap?: string;
   flexDirection?: 'row' | 'column';
-  justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-around';
+  justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-around' | 'space-between';
   alignItems?: 'flex-start' | 'center' | 'flex-end' | 'baseline';
   margin?: string;
 }

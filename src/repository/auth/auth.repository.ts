@@ -21,6 +21,12 @@ class AuthRepository {
 
     return data;
   }
+
+  public async fetchUserInfo(name: string) {
+    const { data } = await githubInstance.get<User>(`/users/${name}`);
+
+    return data;
+  }
 }
 
 export default new AuthRepository();

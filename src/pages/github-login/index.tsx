@@ -2,7 +2,7 @@ import { GetServerSidePropsContext, NextPage } from 'next';
 import authRepository from '@/repository/auth/auth.repository';
 import { githubInstance } from '@/lib/axios';
 import { wrapper } from '@/stores/nextStore';
-import { fetchMyInfoThunk } from '@/stores/user/user.thunk';
+import { fetchMyInfoThunk } from '@/stores/user';
 import isEmpty from '@/util/isEmpty';
 
 const GithubLoginPage: NextPage = () => {

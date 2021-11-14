@@ -1,9 +1,10 @@
 import useRootSelector from '@/hooks/util/useRootSelector';
 
 const useUserInfo = () => {
-  const { userInfo } = useRootSelector(({ user }) => user);
+  const { myInfo, userInfo } = useRootSelector(({ user }) => user);
 
   return {
+    myInfo,
     userInfo,
   };
 }

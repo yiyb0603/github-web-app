@@ -36,7 +36,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => {
       await dispatch(fetchMyInfoThunk());
 
       const { myInfo } = getState().user;
-  
+
       return {
         redirect: {
           permanent: false,

@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { darkTheme } from '@/styles/theme';
 import GlobalStyle from '@/styles/GlobalStyle';
 import PageTemplate from '@/components/Template/PageTemplate';
+import { wrapper } from '@/stores/nextStore';
 
 const GithubApp = ({
   Component,
@@ -21,4 +22,4 @@ const GithubApp = ({
   );
 }
 
-export default GithubApp;
+export default wrapper.withRedux(GithubApp);

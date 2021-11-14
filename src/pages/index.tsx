@@ -1,9 +1,10 @@
 import { NextPage } from 'next';
+import Login from '@/components/Modules/Login';
 
 const Home: NextPage = () => {
   return (
     <div>
-      hello!
+      <Login />
     </div>
   );
 }

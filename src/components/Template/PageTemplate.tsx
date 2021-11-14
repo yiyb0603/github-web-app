@@ -13,13 +13,13 @@ const PageTemplate = ({
 
 const PageTemplateWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: ${({ theme }) => theme.color.background.bold};
 `;
 
 const ChildrenWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   max-width: 550px;
   margin: 0 auto;
   background-color: ${({ theme }) => theme.color.background.medium};

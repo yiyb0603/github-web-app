@@ -37,6 +37,7 @@ class GithubDocument extends Document {
       sheet.seal();
     }
   }
+
   render() {
     return (
       <Html>

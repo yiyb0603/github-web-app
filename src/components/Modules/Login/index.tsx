@@ -3,6 +3,8 @@ import { BsGithub } from 'react-icons/bs';
 import Button from '@/components/Common/Button';
 import Flex from '@/components/Common/Layout/Flex';
 import useColor from '@/hooks/theme/useColor';
+import pushToWindow from '@/util/pushToWindow';
+import { GITHUB_OAUTH_URL } from '@/constants/github.constants';
 
 const Login = (): JSX.Element => {
   const { color } = useColor();
@@ -19,7 +21,7 @@ const Login = (): JSX.Element => {
           borderRadius='5px'
           padding='0 2rem'
           backgroundColor={color.background.bold}
-          onClick={() => {}}
+          onClick={() => window.open(GITHUB_OAUTH_URL)}
         >
           <Flex
             gap='8px'

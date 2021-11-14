@@ -4,6 +4,7 @@ import { githubInstance } from '@/lib/axios';
 import { wrapper } from '@/stores/nextStore';
 import { fetchMyInfoThunk } from '@/stores/user';
 import isEmpty from '@/util/isEmpty';
+import serverSideRedirect from '@/util/serverSideRedirect';
 
 const GithubLoginPage: NextPage = () => {
   return (
@@ -16,13 +17,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => {
     const { code } = ctx.query;
 
     if (isEmpty(code)) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: '/',
-        },
-        props: {},
-      };
+      return serverSideRedirect('/');
     }
 
     try {
@@ -37,21 +32,9 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => {
 
       const { myInfo } = getState().user;
 
-      return {
-        redirect: {
-          permanent: false,
-          destination: `/user/${myInfo!.login}`,
-        },
-        props: {},
-      };
+      return serverSideRedirect(`/user/${myInfo!.login}`);
     } catch (error) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: '/',
-        },
-        props: {},
-      };
+      return serverSideRedirect('/');
     }
   };
 });

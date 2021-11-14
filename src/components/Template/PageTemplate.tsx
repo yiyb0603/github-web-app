@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import { ChildrenProps } from '@/types/component.type';
+import BottomTabNavigator from '@/components/Common/Navigator/BottomTabNavigator';
 
 const PageTemplate = ({
   children,
 }: ChildrenProps): JSX.Element => {
   return (
     <PageTemplateWrapper>
-      <ChildrenWrapper>{children}</ChildrenWrapper>
+      <ChildrenWrapper>
+        {children}
+
+        <BottomTabNavigator />
+      </ChildrenWrapper>
     </PageTemplateWrapper>
   );
 }
@@ -22,6 +27,7 @@ const ChildrenWrapper = styled.div`
   min-height: 100vh;
   max-width: 550px;
   margin: 0 auto;
+  position: relative;
   background-color: ${({ theme }) => theme.color.background.bold};
   border: ${({ theme }) => `1px solid ${theme.color.background.light}`};
 `;

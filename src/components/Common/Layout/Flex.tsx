@@ -6,12 +6,13 @@ type FlexStyleProps = {
   height?: string;
   gap?: string;
   flexDirection?: 'row' | 'column';
-  justifyContent?: 'flex-start' | 'center' | 'flex-end';
+  justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-around';
   alignItems?: 'flex-start' | 'center' | 'flex-end' | 'baseline';
   margin?: string;
 }
 
 type FlexProps = FlexStyleProps & {
+  onClick?: () => void;
   children: ReactNode;
 }
 
@@ -23,6 +24,7 @@ const Flex = ({
   justifyContent,
   alignItems = 'center',
   margin,
+  onClick,
   children,
 }: FlexProps) => {
   return (
@@ -34,6 +36,7 @@ const Flex = ({
       justifyContent={justifyContent}
       alignItems={alignItems}
       margin={margin}
+      onClick={onClick}
     >
       {children}
     </FlexContainer>
